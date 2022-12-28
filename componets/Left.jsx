@@ -6,7 +6,11 @@ function Tleft(){
 
 
     return(<div key={'wrapper'} className=' ml-20'>
-        <Image src={logo} width='30' height={'30'} className=' mb-5'/>
+        <a href="#" /*target="_blank"*/ rel="noopener noreferrer" className='bg-white'>
+
+        <Image src={logo} width='30' height={'30'} className='  mb-5'/>
+
+        </a>
         <ul>
         
             <li id='explore' className="mb-3"><a href="#" id='hov'className=" font-bold text-2xl  hover:bg-white/25  "># Explore</a></li>

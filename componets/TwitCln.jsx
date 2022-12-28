@@ -9,12 +9,13 @@ function TwitCln (){
 
 
   return(
-  <div className='grid grid-cols-3 h-screen text-white bg-black'>
-
-
+    // <div className="bg-red-500 w-8 h-8"></div>
+  <div className='flex justify-center bg-red-500 w-8 h-8'>
+<div>thing</div>
+{/* 
     <Tleft />
     <Center/>
-<Tright/>
+<Tright/> */}
   </div>
   
   

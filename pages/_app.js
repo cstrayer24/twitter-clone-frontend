@@ -1,5 +1,6 @@
 import react from 'react'
 import '../styles/global.css'
+import '../styles/transitions.css'
 
 
 export default function App({ Component, pageProps }) {
