@@ -3,7 +3,7 @@ import logo from "../public/images/logo-corner.png";
 import Settings from "./settings";
 function Tleft() {
   return (
-    <div key={"wrapper"} className=" ml-20">
+    <div key={"wrapper"} className=" ml-20 col-span-1">
       <a href="#" /*target="_blank"*/ rel="noopener noreferrer" className="">
         <Image src={logo} width="30" height={"30"} className="  mb-5 " />
       </a>
