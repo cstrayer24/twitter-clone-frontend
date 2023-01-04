@@ -1,40 +1,58 @@
+import {
+  GoogleLoginButton,
+  AppleLoginButton,
+} from "react-social-login-buttons";
+import Links from "./extra-links";
+
 function Tright() {
   return (
     <div className="">
-      <div className=" mt-4 border-slate-600  border-solid border-2 rounded-xl p-7">
-        <h1 className=" font-extrabold text-2xl h-8 align-text-top mb-2">
+      <div className=" mt-4 border-slate-600  border-solid border-2 rounded-xl p-7 mb-8">
+        <h1 className=" font-extrabold text-2xl h-10 align-text-top mb-2">
           New to twitter?
         </h1>
         <p className=" text-xs text-slate-500">
           Sign up now to get your own personalized timeline!
         </p>
-        <button className=" bg-slate-50 text-black w-full mb-5 rounded-full">
-          sign up with google
-        </button>
-        <button className=" bg-slate-50 text-black w-full mb-5 rounded-full">
-          sign up with apple
-        </button>
-        <button className=" bg-slate-50 text-black w-full rounded-full">
+        <span>
+          <GoogleLoginButton
+            className=" rounded-full"
+            style={{ borderRadius: "99999px" }}
+          />
+        </span>
+        <span>
+          <AppleLoginButton style={{ borderRadius: "99999px" }} />
+        </span>
+        <button
+          className=" bg-slate-50 text-black   rounded-full p-3 relative left-1  mb-1"
+          style={{ width: "98%" }}
+        >
           sign up with phone or email
         </button>
 
         <div>
-          <p className=" text-xs text-slate-500">
+          <p className=" text-xs text-slate-500 " style={{ width: "55ch" }}>
             by signing up , you agree to the
-            <a href="">
-              <span className=" ml-1">Terms of Service</span>
+            <a href="" className=" ml-1">
+              <span className="  text-blue-500">Terms of Service </span>
             </a>
             and
+            <br />
             <span>
-              <a href="">Privacy Policy</a>
+              <a href="" className=" text-blue-500">
+                Privacy Policy
+              </a>
             </span>
             ,including
             <span>
-              <a href="">Cookie use</a>
+              <a href="" className="text-blue-500 ml-1">
+                Cookie use
+              </a>
             </span>
           </p>
         </div>
       </div>
+      <Links />
     </div>
   );
 }
