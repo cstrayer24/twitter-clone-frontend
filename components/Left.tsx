@@ -1,11 +1,17 @@
 import Image from "next/image";
 import logo from "../public/images/logo-corner.png";
 import Settings from "./settings";
-function Tleft() {
+function Tleft({ name }: { name: string }) {
   return (
     <div key={"wrapper"} className=" ml-20 col-span-1">
       <a href="#" /*target="_blank"*/ rel="noopener noreferrer" className="">
-        <Image src={logo} width="30" height={"30"} className="  mb-5 " />
+        <Image
+          alt="alt"
+          src={logo}
+          width="30"
+          height={"30"}
+          className="  mb-5 "
+        />
       </a>
       <ul>
         <li id="explore" className="mb-3">
@@ -24,6 +30,15 @@ function Tleft() {
           >
             <Settings />
             settings
+          </a>
+        </li>
+        <li id="settings">
+          <a
+            href="#"
+            className="  text-2xl font-medium hover:bg-white/25 rounded-full px-5"
+          >
+            <Settings />
+            {name}
           </a>
         </li>
       </ul>
