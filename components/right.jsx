@@ -3,6 +3,7 @@ import {
   AppleLoginButton,
 } from "react-social-login-buttons";
 import Links from "./extra-links";
+import AppleBtn from "./apple-button";
 
 function Tright() {
   return (
@@ -21,7 +22,8 @@ function Tright() {
           />
         </span>
         <span>
-          <AppleLoginButton style={{ borderRadius: "99999px" }} />
+          {/* <AppleLoginButton /> */}
+          <AppleBtn />
         </span>
         <button
           className=" bg-slate-50 text-black   rounded-full p-3 relative left-1  mb-1"

@@ -37,8 +37,8 @@ function Tleft({ name }: { name: string }) {
             href="#"
             className="  text-2xl font-medium hover:bg-white/25 rounded-full px-5"
           >
-            <Settings />
-            {name}
+            {/* <Settings />
+            {name} */}
           </a>
         </li>
       </ul>

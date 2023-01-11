@@ -1,5 +1,6 @@
 import React from "react";
 import Nav from "./nav";
+import Tweet from "./Tweet";
 
 function Center() {
   const [data, setData] = React.useState<any[]>([]);
@@ -9,7 +10,7 @@ function Center() {
   const getPosts = async () => {
     setIsLoading(true);
     try {
-      const resp = await fetch("https://jsonplaceholder.typicode.com/posts");
+      const resp = await fetch("https://jsonplaceholder.typicode.com/posts/2");
 
       if (!resp.ok) {
         setError("Something went wrong");
@@ -32,9 +33,12 @@ function Center() {
       {/* <Nav /> */}
       {error && error}
       {isLoading && !error && <div>Loading..</div>}
-      {data.map((p) => (
+      {/* {data.map((p) => (
         <div className="p-4">{p.body}</div>
-      ))}
+      ))} */}
+      <div className=" grid">
+        <Tweet />
+      </div>
     </div>
   );
 }
