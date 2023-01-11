@@ -6,7 +6,9 @@ const fetcher = (url) => fetch(url).then((res) => res.json());
 function Tweet(props): JSX.Element {
   const [text, updateText] = React.useState<any[]>([]);
   const { data, error, isLoading } = useSwr(
-    `https://jsonplaceholder.typicode.com/posts/`,
+    `https://jsonplaceholder.typicode.com/posts/${Math.floor(
+      Math.random() * 100
+    )}`,
     fetcher
   );
   const genTweet = async () => {
@@ -27,7 +29,7 @@ function Tweet(props): JSX.Element {
   };
 
   useEffect(() => {}, []);
-  // console.log(data.body);
+  console.log(data);
 
   if (error) return <div>failed</div>;
   if (isLoading) return <div>loading...</div>;
