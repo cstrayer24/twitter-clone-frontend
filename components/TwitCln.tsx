@@ -4,7 +4,7 @@ import Tleft from "./Left";
 import Tright from "./right";
 import Center from "./mainTwitter/centralTwit";
 
-function TwitCln() {
+function TwitCln(): JSX.Element {
   return (
     <div className="grid grid-cols-4 h-screen text-white bg-black w-screen">
       <Tleft name="Bob" />

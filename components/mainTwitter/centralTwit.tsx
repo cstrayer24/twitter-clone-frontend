@@ -38,6 +38,8 @@ function Center() {
       ))} */}
       <div className=" grid">
         <Tweet />
+        <Tweet />
+        <Tweet />
       </div>
     </div>
   );

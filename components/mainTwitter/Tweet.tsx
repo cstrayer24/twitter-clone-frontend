@@ -28,12 +28,19 @@ function Tweet(props): JSX.Element {
     }
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    data;
+  }, []);
   console.log(data);
 
   if (error) return <div>failed</div>;
   if (isLoading) return <div>loading...</div>;
-  return <div className=" text-white">{data.body}</div>;
+  return (
+    <div className=" text-white">
+      <h1>{data.title}</h1>
+      <p>{data.body}</p>
+    </div>
+  );
 }
 
 export default Tweet;

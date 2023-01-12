@@ -3,9 +3,10 @@ import {
   AppleLoginButton,
 } from "react-social-login-buttons";
 import Links from "./extra-links";
-import AppleBtn from "./apple-button";
+import AppleBtn from "./buttons/apple-button";
+import GoogleBtn from "./buttons/google-button";
 
-function Tright() {
+function Tright(): JSX.Element {
   return (
     <div className="">
       <div className=" mt-4 border-slate-600  border-solid border-2 rounded-xl p-7 mb-8">
@@ -16,10 +17,11 @@ function Tright() {
           Sign up now to get your own personalized timeline!
         </p>
         <span>
-          <GoogleLoginButton
+          {/* <GoogleLoginButton
             className=" rounded-full"
-            style={{ borderRadius: "99999px" }}
-          />
+            style={{ borderRadius: "99999px", justifyContent: "center" }}
+          /> */}
+          <GoogleBtn />
         </span>
         <span>
           {/* <AppleLoginButton /> */}

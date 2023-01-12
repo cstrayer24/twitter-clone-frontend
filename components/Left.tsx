@@ -1,6 +1,6 @@
 import Image from "next/image";
 import logo from "../public/images/logo-corner.png";
-import Settings from "./settings";
+import Settings from "./icons/settings";
 function Tleft({ name }: { name: string }) {
   return (
     <div key={"wrapper"} className=" ml-20 col-span-1">

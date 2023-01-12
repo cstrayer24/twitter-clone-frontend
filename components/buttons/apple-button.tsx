@@ -1,4 +1,4 @@
-import AppleIcon from "./AppleIcon";
+import AppleIcon from "../icons/AppleIcon";
 
 function AppleBtn(): JSX.Element {
   return (
