@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-
+import { fetcher } from "../../pages/api/hello";
 import useSwr from "swr";
 let txt;
-const fetcher = (url) => fetch(url).then((res) => res.json());
+
 function Tweet(props): JSX.Element {
   const [text, updateText] = React.useState<any[]>([]);
   const { data, error, isLoading } = useSwr(
@@ -11,22 +11,6 @@ function Tweet(props): JSX.Element {
     )}`,
     fetcher
   );
-  const genTweet = async () => {
-    try {
-      const resp = await fetch(
-        `https://jsonplaceholder.typicode.com/posts/${Math.floor(
-          Math.random() * 100
-        )}`
-      );
-
-      if (resp.ok) {
-        const text = [await resp.json()];
-        updateText(text);
-      }
-    } catch (error) {
-      console.log("error");
-    }
-  };
 
   useEffect(() => {
     data;

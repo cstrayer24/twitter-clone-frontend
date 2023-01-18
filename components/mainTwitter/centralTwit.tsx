@@ -30,12 +30,7 @@ function Center() {
 
   return (
     <div className="border-solid  border-slate-700 border-2  col-span-2 mr-5">
-      {/* <Nav /> */}
-      {error && error}
-      {isLoading && !error && <div>Loading..</div>}
-      {/* {data.map((p) => (
-        <div className="p-4">{p.body}</div>
-      ))} */}
+      <Nav />
       <div className=" grid">
         <Tweet />
         <Tweet />
