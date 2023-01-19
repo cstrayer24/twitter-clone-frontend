@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { fetcher } from "../../pages/api/hello";
+
 import useSwr from "swr";
 let txt;
 
 function Tweet(props): JSX.Element {
   const [text, updateText] = React.useState<any[]>([]);
+  const fetcher = (url) => fetch(url).then((res) => res.json());
+
   const { data, error, isLoading } = useSwr(
-    `https://jsonplaceholder.typicode.com/posts/${Math.floor(
-      Math.random() * 100
-    )}`,
+    `api/postData/${Math.floor(Math.random() * 100)}`,
     fetcher
   );
 

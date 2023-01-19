@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ReactDOM } from "react";
 import Glass from "../icons/glass";
+import Settings from "../icons/settings";
 function Nav() {
   let [focus, changeFocus] = useState(false);
   console.log(focus);
@@ -16,26 +17,19 @@ function Nav() {
     }
   }
   return (
-    <div className=" border-solid border-b-2  border-slate-700 ">
+    <div className=" border-solid border-b-2  border-slate-700 relative">
       <form action="#">
-        <span className=" ml-6 flex">
-          <div
-            className=" h-11 w-5 rounded-l-full bg-slate-700"
-            id="rounder"
-          ></div>
-          <Glass
-            className=" inline-flex w-4 h-11 self-center items-center border-l-6 bg-slate-700 "
-            id="icon"
-          />
-          <input
-            type="text"
-            name=""
-            id="search"
-            className=" w-3/4 h-11 bg-slate-700   rounded-r-full focus-visible:border-blue-400  "
-            placeholder="Search Twitter"
-            onFocus={focusHandle}
-          />
-        </span>
+        <div className=" absolute left-0 flex items-center h-full "></div>
+        <Glass className=" w-6 ml-3 bg-slate-700 absolute top-1" id="icon" />
+        <input
+          type="text"
+          name=""
+          id="search"
+          className=" w-3/4 pl-10 h-11 bg-slate-700 rounded-full focus-visible:border-blue-400  "
+          placeholder="Search Twitter"
+          onFocus={focusHandle}
+        />
+        <Settings className=" self-center justify-self-end" />
       </form>
       <nav className=" mt-5">
         <ul className=" grid grid-cols-5">
