@@ -7,7 +7,7 @@ import Center from "./mainTwitter/centralTwit";
 function TwitCln(): JSX.Element {
   return (
     <div className="grid grid-cols-4 h-screen text-white bg-black w-screen overflow-auto">
-      <Tleft name="Bob" />
+      <Tleft />
       <Center />
       <Tright />
     </div>

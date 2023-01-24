@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import useSwr from "swr";
+import Layout from "../layout";
 let txt;
 
 function Tweet(props): JSX.Element {
