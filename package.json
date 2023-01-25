@@ -12,6 +12,8 @@
   "dependencies": {
     "@heroicons/react": "^2.0.13",
     "@next/font": "13.0.7",
+    "@prisma/client": "^4.9.0",
+    "argon2": "^0.30.3",
     "next": "13.1.1",
     "react": "18.2.0",
     "react-apple-login": "^1.1.6",
@@ -25,6 +27,7 @@
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.20",
     "prettier": "^2.8.1",
+    "prisma": "^4.9.0",
     "tailwindcss": "^3.2.4",
     "typescript": "^4.9.4"
   }
