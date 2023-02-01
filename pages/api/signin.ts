@@ -1,7 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import prisma from "../../lib/prisma";
 import * as argon2 from "argon2";
-import getServerSideProps from "../../lib/serverProps";
 
 async function signin(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== "POST") {
@@ -9,23 +8,51 @@ async function signin(req: NextApiRequest, res: NextApiResponse) {
   }
   const { email, password } = req.body;
 
-  const { userData } = (await getServerSideProps()).props;
-  let emails = userData.map((i) => i.email);
-  const testFun = () => {
-    return true;
-  };
-  let success = "hi";
-  const check = async () => {};
-  check();
-  return res.status(200).json({
-    email,
-    password,
-    success: await argon2.verify(
-      userData[emails.indexOf(email)].password,
-      password
-    ),
+  const user = await prisma.user.findFirst({
+    where: { email },
   });
-  // yes
+
+  if (!user) {
+    return res.status(404).json({ error: "no user" });
+  }
+
+  const isValidPassword = await argon2.verify(user.password, password);
+
+  if (!isValidPassword) {
+    return res.status(400).json({ error: "wrong password" });
+  }
+  const expiresAt = new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000);
+  const session = await prisma.session.create({
+    data: {
+      userId: user.id,
+      expiresAt,
+    },
+  });
+
+  res.setHeader(
+    "Set-Cookie",
+    `sessionId=${
+      session.id
+    }; Path=/; HttpOnly; Expires=${expiresAt.toUTCString()};`
+  );
+
+  res.send({ id: user.id, email: user.email, name: user.name });
+  // const { userData } = (await getServerSideProps()).props;
+  // let emails = userData.map((i) => i.email);
+  // const testFun = () => {
+  //   return true;
+  // };
+  // let success = "hi";
+  // const check = async () => {};
+  // check();
+  // return res.status(200).json({
+  //   email,
+  //   password,
+  //   success: await argon2.verify(
+  //     userData[emails.indexOf(email)].password,
+  //     password
+  //   ),
+  // });
 }
 
 export default signin;

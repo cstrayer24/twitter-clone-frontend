@@ -22,7 +22,7 @@ function signin() {
         id="1"
         onChange={(e) => setEmail(e.target.value)}
       />
-      <label htmlFor="pass"></label>
+      <label htmlFor="pass">Password</label>
       <input
         type="password"
         name="pass"
