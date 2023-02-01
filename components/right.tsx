@@ -5,8 +5,14 @@ import {
 import Links from "./extra-links";
 import AppleBtn from "./buttons/apple-button";
 import GoogleBtn from "./buttons/google-button";
-
+import Link from "next/link";
+import SignupPage from "./signup";
+import { useState } from "react";
 function Tright(): JSX.Element {
+  const [up, setUp] = useState(false);
+  function handleClick() {
+    setUp(!up);
+  }
   return (
     <div className="">
       <div className=" mt-4 border-slate-600  border-solid border-2 rounded-xl p-7 mb-8">
@@ -17,19 +23,16 @@ function Tright(): JSX.Element {
           Sign up now to get your own personalized timeline!
         </p>
         <span>
-          {/* <GoogleLoginButton
-            className=" rounded-full"
-            style={{ borderRadius: "99999px", justifyContent: "center" }}
-          /> */}
           <GoogleBtn />
         </span>
         <span>
-          {/* <AppleLoginButton /> */}
           <AppleBtn />
         </span>
+        {up && <SignupPage />}
         <button
           className=" bg-slate-50 text-black   rounded-full p-3 relative left-1  mb-1"
           style={{ width: "98%" }}
+          onClick={handleClick}
         >
           sign up with phone or email
         </button>

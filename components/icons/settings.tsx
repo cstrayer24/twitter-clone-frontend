@@ -1,6 +1,10 @@
 export default function Settings(props) {
   return (
-    <div className={props.className} style={{ display: "inline-block" }}>
+    <div
+      className={props.className}
+      style={{ display: "inline-block" }}
+      id="set"
+    >
       <svg
         viewBox="0 0 24 24"
         className="inline-block text-white h-4 w-4 fill-current"
