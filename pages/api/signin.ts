@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import prisma from "../../../libs/prisma";
+import prisma from "../../lib/prisma";
 import * as argon2 from "argon2";
-import getServerSideProps from "../../../libs/serverprops";
+import getServerSideProps from "../../lib/serverProps";
 
 async function signin(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== "POST") {
