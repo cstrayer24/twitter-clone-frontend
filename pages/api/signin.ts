@@ -37,22 +37,6 @@ async function signin(req: NextApiRequest, res: NextApiResponse) {
   );
 
   res.send({ id: user.id, email: user.email, name: user.name });
-  // const { userData } = (await getServerSideProps()).props;
-  // let emails = userData.map((i) => i.email);
-  // const testFun = () => {
-  //   return true;
-  // };
-  // let success = "hi";
-  // const check = async () => {};
-  // check();
-  // return res.status(200).json({
-  //   email,
-  //   password,
-  //   success: await argon2.verify(
-  //     userData[emails.indexOf(email)].password,
-  //     password
-  //   ),
-  // });
 }
 
 export default signin;

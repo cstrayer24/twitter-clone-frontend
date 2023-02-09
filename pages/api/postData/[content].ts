@@ -21,7 +21,12 @@ export default async function handler(
   const resp = await fetch(
     `https://jsonplaceholder.typicode.com/posts/${content}`
   );
+  const resp2 = await fetch(
+    `https://jsonplaceholder.typicode.com/photos/${content}`
+  );
+  const pfp = await resp2.json();
 
   const data = await resp.json();
-  res.status(200).json(data);
+
+  res.status(200).json([data, pfp]);
 }

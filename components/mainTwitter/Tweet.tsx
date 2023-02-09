@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import Image from "next/image";
 import useSwr from "swr";
 import Layout from "../layout";
 let txt;
@@ -21,9 +21,18 @@ function Tweet(props): JSX.Element {
   if (error) return <div>failed</div>;
   if (isLoading) return <div>loading...</div>;
   return (
-    <div className=" text-white">
-      <h1>{data.title}</h1>
-      <p>{data.body}</p>
+    <div className=" border-solid border border-white ">
+      <span className="flex items-center ">
+        <Image
+          src={`${data[1].url}`}
+          alt="pfp"
+          width={30}
+          height={30}
+          className=" rounded-full inline  m-3"
+        />
+        <h1 className=" text-lg">{data[0].title}</h1>
+      </span>
+      <p className=" w-[60ch]">{data[0].body}</p>
     </div>
   );
 }

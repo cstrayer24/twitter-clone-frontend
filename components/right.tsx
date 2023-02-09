@@ -7,12 +7,14 @@ import AppleBtn from "./buttons/apple-button";
 import GoogleBtn from "./buttons/google-button";
 import Link from "next/link";
 import SignupPage from "./signup";
-import { useState } from "react";
-function Tright(): JSX.Element {
+import { ctx } from "./signup";
+import { Context, createContext, useContext, useEffect, useState } from "react";
+import { signIn, signOut, useSession } from "next-auth/react";
+import stateChange from "../lib/stateChange";
+function Tright(props): JSX.Element {
   const [up, setUp] = useState(false);
-  function handleClick() {
-    setUp(!up);
-  }
+  let upContext = useContext(ctx);
+  const { data: session } = useSession();
   return (
     <div className="">
       <div className=" mt-4 border-slate-600  border-solid border-2 rounded-xl p-7 mb-8">
@@ -23,16 +25,16 @@ function Tright(): JSX.Element {
           Sign up now to get your own personalized timeline!
         </p>
         <span>
-          <GoogleBtn />
+          <GoogleBtn onClick={() => signIn("google")} />
         </span>
         <span>
           <AppleBtn />
         </span>
-        {up && <SignupPage />}
+        {upContext && <SignupPage />}
         <button
           className=" bg-slate-50 text-black   rounded-full p-3 relative left-1  mb-1"
           style={{ width: "98%" }}
-          onClick={handleClick}
+          onClick={props.onClick}
         >
           sign up with phone or email
         </button>

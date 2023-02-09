@@ -14,7 +14,7 @@ function signin() {
     console.log(data);
   };
   return (
-    <form action="" method="get">
+    <form action="" method="get" onSubmit={handleSubmit}>
       <label htmlFor="email">email</label>
       <input
         type="email"
@@ -29,9 +29,7 @@ function signin() {
         id="2"
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button type="button" onClick={handleSubmit}>
-        submit
-      </button>
+      <button type="submit">submit</button>
     </form>
   );
 }
