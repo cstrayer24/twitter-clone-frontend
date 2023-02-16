@@ -26,11 +26,11 @@ export default async function handler(
   // if (tweetBody.length > 260) {
   //   return res.status(404).json({ lengthError: "your tweet is too long" });
   // }
-  console.log(tweetBody);
+  // console.log(tweetBody.toString());
 
   const users = await prisma.user.findFirst({
     where: {
-      id: req.cookies.sessionId,
+      id: session.userId,
     },
   });
   // Save the tweet
@@ -38,7 +38,7 @@ export default async function handler(
     data: {
       body: req.body,
       length: req.body.length,
-      userId: req.cookies.session,
+      userId: session.user.id,
     },
   });
   // Return the tweet

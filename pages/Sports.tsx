@@ -1,9 +1,14 @@
 import Layout from "../components/layout";
+import Tweet from "../components/mainTwitter/Tweet";
 
 function Sports() {
   return (
     <Layout>
-      <h1>sports</h1>
+      <Tweet />
+      <Tweet />
+      <Tweet />
+      <Tweet />
+      <Tweet />
     </Layout>
   );
 }

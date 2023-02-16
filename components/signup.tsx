@@ -16,8 +16,9 @@ const SignupPage = (props) => {
         "Content-type": "application/json",
       },
     });
-    setUp(!up);
-    console.log(up);
+    if (email !== "" && email.includes("@") && password != "") {
+      setUp(!up);
+    }
   };
   function handleClick(t) {
     console.log(t);

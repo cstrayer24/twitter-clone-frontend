@@ -26,7 +26,7 @@ export default async function handler(
   );
   const pfp = await resp2.json();
 
-  const data = await resp.json();
+  const text = await resp.json();
 
-  res.status(200).json([data, pfp]);
+  res.status(200).json({ text, pfp });
 }

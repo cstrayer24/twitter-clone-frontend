@@ -24,15 +24,15 @@ function Tweet(props): JSX.Element {
     <div className=" border-solid border border-white ">
       <span className="flex items-center ">
         <Image
-          src={`${data[1].url}`}
+          src={`${data.pfp.url}`}
           alt="pfp"
           width={30}
           height={30}
           className=" rounded-full inline  m-3"
         />
-        <h1 className=" text-lg">{data[0].title}</h1>
+        <h1 className=" text-lg">{data.text.title}</h1>
       </span>
-      <p className=" w-[60ch]">{data[0].body}</p>
+      <p className=" w-[60ch]">{data.text.body}</p>
     </div>
   );
 }

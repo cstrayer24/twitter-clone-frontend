@@ -8,7 +8,7 @@ function signin() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const post = await axios.post("api/signin", { email, password });
+    const post = await axios.post("./api/signin", { email, password });
     console.log(post);
     const data = await post.data;
     console.log(data);

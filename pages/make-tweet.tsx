@@ -5,7 +5,7 @@ const MakeTweetPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await fetch("/api/tweet", {
+    await fetch("./api/tweet", {
       method: "POST",
       body: tweet,
     });
