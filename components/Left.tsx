@@ -3,8 +3,8 @@ import logo from "../public/images/logo-corner.png";
 import Settings from "./icons/settings";
 function Tleft() {
   return (
-    <div key={"wrapper"} className=" ml-20 col-span-1">
-      <a href="#" /*target="_blank"*/ rel="noopener noreferrer" className="">
+    <div key={"wrapper"} className=" ml-20 col-span-1 max-sm:hidden">
+      <a href="#" rel="noopener noreferrer" className="">
         <Image
           alt="alt"
           src={logo}
@@ -18,9 +18,9 @@ function Tleft() {
           <a
             href="#"
             id="hov"
-            className=" font-bold text-2xl  hover:bg-white/25 rounded-full px-5"
+            className=" font-bold text-2xl  hover:bg-white/25 rounded-full px-5 inline  "
           >
-            # Explore
+            # <span className=" inline  md:max-lg:hidden">Explore</span>
           </a>
         </li>
         <li id="settings">
@@ -29,17 +29,14 @@ function Tleft() {
             className="  text-2xl font-medium hover:bg-white/25 rounded-full px-5"
           >
             <Settings />
-            settings
+            <span className="inline  md:max-lg:hidden">settings</span>
           </a>
         </li>
         <li id="settings">
           <a
             href="#"
             className="  text-2xl font-medium hover:bg-white/25 rounded-full px-5"
-          >
-            {/* <Settings />
-            {name} */}
-          </a>
+          ></a>
         </li>
       </ul>
     </div>

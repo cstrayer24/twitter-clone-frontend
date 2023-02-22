@@ -21,7 +21,7 @@ function Links() {
         More...
       </a>
 
-      <p>© 2023 Twitter, Inc.</p>
+      <p>© {new Date().getFullYear()} Twitter, Inc.</p>
     </div>
   );
 }

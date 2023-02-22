@@ -1,6 +1,6 @@
 import React, { FormEvent, useState } from "react";
-import loginuser from "../lib/login";
-import axios from "axios";
+
+
 function signin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -8,9 +8,15 @@ function signin() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const post = await axios.post("./api/signin", { email, password });
+    const post = await fetch("api/signin", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    });
     console.log(post);
-    const data = await post.data;
+    const data = await post.json();
     console.log(data);
   };
   return (

@@ -4,25 +4,32 @@ import { ReactDOM } from "react";
 import Glass from "../icons/glass";
 import Settings from "../icons/settings";
 import Link from "next/link";
+import Image from "next/image";
+import logo from "../../public/images/logo-corner.png";
 function Nav() {
   const router = useRouter();
   console.log(router.asPath);
   return (
     <div className=" border-solid border-b-2  border-slate-700 relative">
-      <form action="#">
-        <div className=" absolute left-0 flex items-center h-full "></div>
-        <Glass className=" w-6 ml-3 bg-slate-700 absolute top-2" id="icon" />
+      <div className=" hidden max-sm:block   max-sm:relative top-7">
+        <Image src={logo} alt="logo" className=" w-10" />
+      </div>
+      <form action="#" className=" max-sm:ml-20">
+        <Glass
+          className=" w-6 ml-3 bg-slate-700 absolute top-2  max-sm:top-12 max-sm:w-3 "
+          id="icon"
+        />
         <input
           type="text"
           name=""
           id="search"
-          className=" w-3/4 pl-10 h-11 bg-slate-700 rounded-full focus-visible:border-blue-400  "
+          className=" w-3/4 pl-10 h-11 max-sm:h-10 max-sm:w-3/5 bg-slate-700 rounded-full focus-visible:border-blue-400  "
           placeholder="Search Twitter"
         />
         <Settings className=" self-center justify-self-end float-right mr-5 hover:bg-slate-500 rounded-full" />
       </form>
-      <nav className=" mt-5">
-        <ul className=" grid grid-cols-5 mx-4 text-slate-500">
+      <nav className=" mt-5 overflow-scroll">
+        <ul className=" grid grid-cols-5 mx-4 text-slate-500 max-sm:text-sm">
           <li className="">
             {" "}
             <Link

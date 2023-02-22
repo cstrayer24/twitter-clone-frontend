@@ -33,6 +33,7 @@ export default async function handler(
       id: session.userId,
     },
   });
+
   // Save the tweet
   const tweet = await prisma.tweet.create({
     data: {

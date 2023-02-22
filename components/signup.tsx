@@ -20,9 +20,7 @@ const SignupPage = (props) => {
       setUp(!up);
     }
   };
-  function handleClick(t) {
-    console.log(t);
-  }
+
   return (
     <>
       {up && (

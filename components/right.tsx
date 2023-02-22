@@ -16,7 +16,7 @@ function Tright(props): JSX.Element {
   let upContext = useContext(ctx);
   const { data: session } = useSession();
   return (
-    <div className="">
+    <div className=" max-sm:hidden">
       <div className=" mt-4 border-slate-600  border-solid border-2 rounded-xl p-7 mb-8">
         <h1 className=" font-extrabold text-2xl h-10 align-text-top mb-2">
           New to twitter?

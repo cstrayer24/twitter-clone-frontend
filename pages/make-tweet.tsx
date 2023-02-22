@@ -12,7 +12,7 @@ const MakeTweetPage = () => {
   };
 
   return (
-    <div>
+    <div className=" bg-black text-white">
       <form
         onSubmit={handleSubmit}
         className="flex gap-10 flex-col w-[400px] m-auto pt-10"

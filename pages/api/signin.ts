@@ -29,19 +29,14 @@ async function signin(req: NextApiRequest, res: NextApiResponse) {
     },
   });
 
-  res.setHeader(
-    "Set-Cookie",
+  res.setHeader("Set-Cookie", [
     `sessionId=${
       session.id
-    }; Path=/; HttpOnly; Expires=${expiresAt.toUTCString()};`
-  );
+    }; Path=/; HttpOnly; Expires=${expiresAt.toUTCString()};`,
+    `isLoggedIn=${1}; tOrf=1; Path=/; Expires=${expiresAt.toUTCString()};`,
+  ]);
 
-  res.setHeader(
-    "Set-Cookie",
-    `isLoggedIn=${1}; Path=/; Expires=${expiresAt.toUTCString()};`
-  );
-
-  return res.send({ id: user.id, email: user.email, name: user.name });
+  res.send({ id: user.id, email: user.email, name: user.name });
 }
 
 export default signin;
