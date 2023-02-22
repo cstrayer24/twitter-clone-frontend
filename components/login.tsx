@@ -7,7 +7,7 @@ function Signin() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const post = await fetch("api/signin", {
+    const post = await fetch("/api/signin", {
       method: "POST",
       headers: {
         "content-type": "application/json",

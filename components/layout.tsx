@@ -10,7 +10,11 @@ import { useState } from "react";
 import SignupPage from "./signup";
 import signin from "../pages/signin";
 import Signin from "./login";
+
+import { isLoggedIn } from "../lib/usersHelper";
+
 function Layout(props) {
+  isLoggedIn();
   const router = useRouter();
   const [up, changeUp] = useState(false);
   const [upL, changeUpl] = useState(false);

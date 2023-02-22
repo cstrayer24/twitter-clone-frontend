@@ -8,7 +8,6 @@ import Image from "next/image";
 import logo from "../../public/images/logo-corner.png";
 function Nav() {
   const router = useRouter();
-  console.log(router.asPath);
   return (
     <div className=" border-solid border-b-2  border-slate-700 relative">
       <div className=" hidden max-sm:block   max-sm:relative top-7">

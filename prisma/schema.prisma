@@ -14,6 +14,8 @@ model User {
   name     String?
   sessions Session[]
   Tweets    Tweet[]
+  follows Follow[] @relation("follower")
+  followers Follow[] @relation("following")
 }
 
 model Session {
@@ -33,4 +35,12 @@ model Tweet {
   userId String @db.Uuid
 
   @@index([userId])
+}
+
+model Follow {
+  id     String @id @default(dbgenerated("gen_random_uuid ()")) @db.Uuid
+  followerId String @db.Uuid
+  follower User  @relation("follower", fields: [followerId], references: [id])
+  following User @relation("following", fields: [followingId], references: [id])
+  followingId String @db.Uuid
 }
