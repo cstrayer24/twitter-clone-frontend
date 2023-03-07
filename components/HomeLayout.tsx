@@ -1,16 +1,15 @@
-import { FC } from "react";
-
-
+import { ReactNode } from "react";
 import VerticalNav from "./vertical-nav";
 import HomeRight from "./homeRight";
-type props = {
-  children: JSX.Element;
+
+interface HomeProps {
   user: string;
-};
-const Home: FC = (props: props) => (
+}
+
+const Home = ({ user, children }: { user: string; children?: ReactNode }) => (
   <div className=" grid grid-cols-4 bg-black h-screen w-screen">
-    <VerticalNav user={props.user} />
-    <div className=" col-span-2">{props.children}</div>
+    <VerticalNav user={user} />
+    <div className=" col-span-2">{children}</div>
     <HomeRight />
   </div>
 );

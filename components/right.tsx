@@ -9,12 +9,10 @@ import Link from "next/link";
 import SignupPage from "./signup";
 import { ctx } from "./signup";
 import { Context, createContext, useContext, useEffect, useState } from "react";
-import { signIn, signOut, useSession } from "next-auth/react";
 import stateChange from "../lib/stateChange";
 function Tright(props): JSX.Element {
   const [up, setUp] = useState(false);
   let upContext = useContext(ctx);
-  const { data: session } = useSession();
   return (
     <div className=" max-sm:hidden">
       <div className=" mt-4 border-slate-600  border-solid border-2 rounded-xl p-7 mb-8">
@@ -24,9 +22,7 @@ function Tright(props): JSX.Element {
         <p className=" text-xs text-slate-500">
           Sign up now to get your own personalized timeline!
         </p>
-        <span>
-          <GoogleBtn onClick={() => signIn()} />
-        </span>
+        <span>{/* <GoogleBtn onClick={() => signIn()} /> */}</span>
         <span>
           <AppleBtn />
         </span>
