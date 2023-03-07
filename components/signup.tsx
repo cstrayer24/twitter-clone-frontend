@@ -4,6 +4,7 @@ export let ctx = createContext(false);
 const SignupPage = (props) => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [name, setName] = React.useState("");
   let [up, setUp] = useState(true);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -11,7 +12,7 @@ const SignupPage = (props) => {
 
     const resp = await fetch("/api/signup", {
       method: "POST",
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ name, email, password }),
       headers: {
         "Content-type": "application/json",
       },
@@ -30,6 +31,15 @@ const SignupPage = (props) => {
               onSubmit={handleSubmit}
               className="flex gap-10 flex-col w-[400px] m-auto pt-10"
             >
+              <div>
+                <label className="block">name</label>
+                <input
+                  className="border border-gray-300  bg-black"
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </div>
               <div>
                 <label className="block">email</label>
                 <input

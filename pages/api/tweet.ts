@@ -40,6 +40,7 @@ export default async function handler(
       body: req.body,
       length: req.body.length,
       userId: session.user.id,
+      Name: users.name,
     },
   });
   // Return the tweet

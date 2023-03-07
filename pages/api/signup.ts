@@ -11,12 +11,12 @@ export default async function handler(
   if (req.method !== "POST") {
     return res.status(404).json({ error: "not found" });
   }
-  const { email, password } = req.body;
+  const { name, email, password } = req.body;
 
   const hashedPassword = await hash(password);
 
   const resp = await prisma.user.create({
-    data: { email, password: hashedPassword },
+    data: { name, email, password: hashedPassword },
   });
   res.status(200).json({ resp });
 }

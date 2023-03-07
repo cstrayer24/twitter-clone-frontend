@@ -1,5 +1,5 @@
+import { Router } from "next/router";
 import React, { FormEvent, useState } from "react";
-
 
 function signin() {
   const [email, setEmail] = useState("");
@@ -18,6 +18,8 @@ function signin() {
     console.log(post);
     const data = await post.json();
     console.log(data);
+    if (data.ok) {
+    }
   };
   return (
     <form action="" method="get" onSubmit={handleSubmit}>

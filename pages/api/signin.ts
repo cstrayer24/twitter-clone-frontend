@@ -1,6 +1,8 @@
+//third party
 import type { NextApiRequest, NextApiResponse } from "next";
-import prisma from "../../lib/prisma";
 import * as argon2 from "argon2";
+//my own
+import prisma from "../../lib/prisma";
 
 async function signin(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== "POST") {

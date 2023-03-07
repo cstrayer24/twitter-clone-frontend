@@ -4,11 +4,16 @@ import { User } from "@prisma/client";
 import prisma from "../../lib/prisma";
 import Layout from "../../components/layout";
 import { isLoggedIn } from "../../lib/usersHelper";
-
+import Home from "../../components/HomeLayout";
+import { redirect } from "next/dist/server/api-utils";
+import { NOTFOUND } from "dns";
+import { useRouter } from "next/router";
 export const UserPage = ({ user }: { user: User }) => {
+  const router = useRouter();
   const handleClick = async () => {
     if (!isLoggedIn()) {
       // Prompt for log in
+      
       return;
     }
     const resp = await fetch("/api/follow", {
@@ -21,22 +26,16 @@ export const UserPage = ({ user }: { user: User }) => {
 
     if (!resp.ok) {
       // handle error
+
       return;
     }
 
     // Show success message
   };
-
-  return (
-    <Layout>
-      <button
-        onClick={handleClick}
-        className="bg-white py-2 rounded-full text-black px-10 hover:bg-gray-200"
-      >
-        Follow {user.name}
-      </button>
-    </Layout>
-  );
+  if (!user) {
+    router.push("/signin");
+  }
+  return <Home user={user.name}></Home>;
 };
 
 export default UserPage;
@@ -62,6 +61,9 @@ export const getServerSideProps: GetServerSideProps = async ({
     if (!user) {
       return {
         notFound: true,
+        redirect: {
+          destination: "/pages/signin",
+        },
       };
     }
     return {

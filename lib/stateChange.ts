@@ -1,3 +1,3 @@
-export default function stateChange(stc: boolean, stcr: void) {
+export default function stateChange(stc: boolean, stcr: any) {
   stcr(!stc);
 }

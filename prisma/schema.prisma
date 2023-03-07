@@ -8,14 +8,14 @@ datasource db {
 }
 
 model User {
-  id       String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  email    String    @unique
-  password String
-  name     String?
-  sessions Session[]
+  id        String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  email     String    @unique
+  password  String
+  name      String?
+  sessions  Session[]
   Tweets    Tweet[]
-  follows Follow[] @relation("follower")
-  followers Follow[] @relation("following")
+  follows   Follow[]  @relation("follower")
+  followers Follow[]  @relation("following")
 }
 
 model Session {
@@ -28,19 +28,20 @@ model Session {
 }
 
 model Tweet {
-  id     String @id @default(dbgenerated("gen_random_uuid ()")) @db.Uuid
-  body   String
-  length Int
-  user   User?   @relation(fields: [userId], references: [id])
-  userId String @db.Uuid
+  id       String @id @default(dbgenerated("gen_random_uuid ()")) @db.Uuid
+  body     String
+  length   Int
+  user     User?  @relation(fields: [userId], references: [id])
+  userId   String @db.Uuid
+  Name String @default("")
 
   @@index([userId])
 }
 
 model Follow {
-  id     String @id @default(dbgenerated("gen_random_uuid ()")) @db.Uuid
-  followerId String @db.Uuid
-  follower User  @relation("follower", fields: [followerId], references: [id])
-  following User @relation("following", fields: [followingId], references: [id])
+  id          String @id @default(dbgenerated("gen_random_uuid ()")) @db.Uuid
+  followerId  String @db.Uuid
+  follower    User   @relation("follower", fields: [followerId], references: [id])
+  following   User   @relation("following", fields: [followingId], references: [id])
   followingId String @db.Uuid
 }

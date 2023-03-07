@@ -27,7 +27,7 @@ function Nav() {
         />
         <Settings className=" self-center justify-self-end float-right mr-5 hover:bg-slate-500 rounded-full" />
       </form>
-      <nav className=" mt-5 overflow-scroll">
+      <nav className=" mt-5 ">
         <ul className=" grid grid-cols-5 mx-4 text-slate-500 max-sm:text-sm">
           <li className="">
             {" "}

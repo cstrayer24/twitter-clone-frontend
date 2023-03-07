@@ -2,7 +2,7 @@ import React from "react";
 
 function BottomBanner(props) {
   return (
-    <div className=" max-sm:bg-black w-screen  h-20 bg-blue-400 m-0 fixed  z-50 top-[90%] grid overflow-hidden max-sm:place-items-center">
+    <div className=" max-sm:bg-black w-screen  h-20 bg-blue-400 m-0 fixed  z-10 top-[90%] grid overflow-hidden max-sm:place-items-center">
       <span className=" place-self-center grid grid-flow-row  grid-rows-2  w-fit max-sm:hidden">
         <h1 className=" inline font-bold text-2xl">
           Don’t miss what’s happening

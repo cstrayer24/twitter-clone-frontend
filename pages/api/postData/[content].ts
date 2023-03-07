@@ -23,7 +23,6 @@ export default async function handler(
   }
   if (content != undefined) {
     res.status(200).json(TweetArr[Number(content) - 1]);
-  } else {
-    res.status(200).json(TweetArr);
   }
+
 }
