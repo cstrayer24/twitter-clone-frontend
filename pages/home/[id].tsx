@@ -4,6 +4,7 @@ import { User } from "@prisma/client";
 import prisma from "../../lib/prisma";
 import { isLoggedIn } from "../../lib/usersHelper";
 import Home from "../../components/HomeLayout";
+import { redirect } from "next/dist/server/api-utils";
 import { useRouter } from "next/router";
 
 export const UserPage = ({ user }: { user: User }) => {
