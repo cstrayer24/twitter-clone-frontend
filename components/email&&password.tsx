@@ -4,6 +4,9 @@ import { useRouter } from "next/router";
 import React, { FormEvent, useState } from "react";
 import EX from "./icons/ex";
 import LogoCorner from "./icons/corner-logo";
+import Link from "next/link";
+import OpenEye from "./icons/openEye";
+import ShutEye from "./icons/shutEye";
 type eAndPProps = {
   email: string;
 };
@@ -11,7 +14,19 @@ function EmailAndPwd(props: eAndPProps) {
   const [email, setEmail] = useState(props.email);
   const [password, setPassword] = useState("");
   const [up, setUp] = useState(true);
+  const [focus, setFocus] = useState(false);
+  const [pwdVis, setPwdVis] = useState("password");
+  const [pwdVisHelp, setPwdVisHelp] = useState(true);
   const router = useRouter();
+
+  const showPwd = (e) => {
+    setPwdVisHelp(!pwdVisHelp);
+    if (pwdVisHelp) {
+      setPwdVis("password");
+    } else {
+      setPwdVis("text");
+    }
+  };
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -57,9 +72,6 @@ function EmailAndPwd(props: eAndPProps) {
               onSubmit={handleSubmit}
               className="flex gap-10 flex-col w-[400px] m-auto pt-10"
             >
-              {/* <label htmlFor="email" className=" block">
-                email
-              </label> */}
               <span className=" relative top-16 text-gray-500 right-40 ">
                 Email
               </span>
@@ -72,19 +84,61 @@ function EmailAndPwd(props: eAndPProps) {
                 value={props.email}
                 disabled
               />
-              {/* <label htmlFor="pass" className=" block"> */}
-              {/* Password */}
-              {/* </label> */}
-              <input
-                type="password"
-                name="pass"
-                id="2"
-                onChange={(e) => setPassword(e.target.value)}
-                className="border border-gray-300  bg-black"
-              />
-              <button type="submit" className="border border-gray-300">
-                submit
+              <div
+                className={` border bg-black rounded-md h-[4rem] ${
+                  !focus ? "border-gray-300" : " border-blue-400"
+                }    `}
+              >
+                <span
+                  className={` relative select-none ${
+                    !focus
+                      ? " top-2 text-gray-500 text-xl  "
+                      : "top-1 text-blue-400"
+                  }`}
+                >
+                  Password
+                </span>
+                <input
+                  type={pwdVis}
+                  name="pass"
+                  id="2"
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="bg-black text-white relative top-7 right-20 w-[19rem] focus:outline-none "
+                  onFocus={() => setFocus(true)}
+                  onBlur={() => setFocus(false)}
+                />
+              </div>
+              <button
+                className=" relative bottom-20  left-[23rem]"
+                onClick={showPwd}
+                type="button"
+              >
+                {!pwdVisHelp ? (
+                  <OpenEye className=" h-6 w-6 fixed" />
+                ) : (
+                  <ShutEye className="h-6 w-6 fixed" />
+                )}
               </button>
+              <Link
+                href={`/`}
+                className=" text-blue-400 relative bottom-20 right-28"
+              >
+                forgot your password?
+              </Link>
+              <button
+                type="submit"
+                className=" bg-white  text-black font-bold  rounded-full py-3 relative bottom-6 hover:bg-gray-300"
+              >
+                Login
+              </button>
+
+              <span className=" text-gray-500 relative bottom-16 right-[4rem]">
+                Don't have an account?{" "}
+                <Link href={"/"} className=" text-blue-400">
+                  {" "}
+                  Sign up
+                </Link>
+              </span>
             </form>
           </div>
         </div>

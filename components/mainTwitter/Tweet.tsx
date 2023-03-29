@@ -27,11 +27,12 @@ function Tweet(props): JSX.Element {
   async function like() {
     const req = await fetch("/api/like", {
       method: "POST",
-      body: JSON.stringify({ body: data.body }),
+      body: JSON.stringify({ id: data.id }),
     });
     const res = await req.json();
     console.log(res);
   }
+  console.log(data);
   if (error) return <div>failed</div>;
   if (isLoading) return <div>loading...</div>;
   return (

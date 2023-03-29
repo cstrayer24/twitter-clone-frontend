@@ -3,7 +3,7 @@ import prisma from "../../lib/prisma";
 import { json } from "stream/consumers";
 
 export default async function like(req: NextApiRequest, res: NextApiResponse) {
-  const { body } = req.body;
+  const { id } = req.body;
   if (req.method !== "POST") {
     return res.status(400).json({ err: "bad request" });
   }
@@ -21,7 +21,7 @@ export default async function like(req: NextApiRequest, res: NextApiResponse) {
   });
   const likedTweet = await prisma.tweet.findFirst({
     where: {
-      body: body,
+      id,
     },
   });
 
