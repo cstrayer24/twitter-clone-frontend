@@ -30,7 +30,7 @@ const SignupPage = (props) => {
       method: "POST",
       body: JSON.stringify({ name, email, password }),
       headers: {
-        "Content-type": "application/json",
+        "Content-type": "application/octet-stream",
       },
     });
     const JsonResp = await resp.json();
@@ -40,7 +40,7 @@ const SignupPage = (props) => {
     pfpData.append("file", img);
     const pfpMaker = await fetch("/api/pfp", {
       method: "POST",
-      body: pfpData,
+      body: img,
       headers: {
         "Content-Type": "multipart/form-data",
       },
