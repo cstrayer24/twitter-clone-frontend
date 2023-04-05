@@ -30,7 +30,6 @@ async function signin(req: NextApiRequest, res: NextApiResponse) {
       expiresAt,
     },
   });
-
   res.setHeader("Set-Cookie", [
     `sessionId=${
       session.id

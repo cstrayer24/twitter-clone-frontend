@@ -16,7 +16,7 @@ function EmailAndPwd(props: eAndPProps) {
   const [up, setUp] = useState(true);
   const [focus, setFocus] = useState(false);
   const [pwdVis, setPwdVis] = useState("password");
-  const [pwdVisHelp, setPwdVisHelp] = useState(true);
+  const [pwdVisHelp, setPwdVisHelp] = useState(false);
   const router = useRouter();
 
   const showPwd = (e) => {

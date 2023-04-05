@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { cookies } from "next/headers";
 import { getCookie } from "cookies-next";
 import React from "react";
+import { useRouter } from "next/router";
 
 import Tleft from "./Left";
 import Tright from "./right";
@@ -16,10 +17,21 @@ function TwitCln(): JSX.Element {
   const [up, changeUp] = useState(false);
   const [upL, changeUpl] = useState(false);
   const [bannerUp, setBanner] = useState(false);
+  const router = useRouter();
+  const checkFetch = async (): Promise<void> => {
+    const req = await fetch("/api/checkLoggedin", { method: "POST" });
+    const res = await req.json();
+    if (req.ok) {
+      console.log("works");
+      console.log(res);
+      router.push(`/home/${res}`);
+    }
+  };
   useEffect(() => {
     if (isLoggedIn()) {
       setBanner(true);
       console.log("test");
+      checkFetch();
     }
   }, [isLoggedIn()]);
   return (

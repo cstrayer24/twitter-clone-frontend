@@ -22,7 +22,9 @@ function Tright(props): JSX.Element {
         <p className=" text-xs text-slate-500">
           Sign up now to get your own personalized timeline!
         </p>
-        <span>{/* <GoogleBtn onClick={() => signIn()} /> */}</span>
+        <span>
+          <GoogleBtn />
+        </span>
         <span>
           <AppleBtn />
         </span>

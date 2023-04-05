@@ -1,6 +1,6 @@
 import React, { createContext, useState, createRef, useRef } from "react";
 import { FormEvent } from "react";
-
+import { useRouter } from "next/router";
 import getfile from "../lib/getfile";
 import documentHelper from "../lib/documentHelper";
 import imgHelper from "../lib/imgHelper";
@@ -17,34 +17,31 @@ const SignupPage = (props) => {
   const fin = documentHelper(document.querySelector("#fi"));
   console.log(FI);
   console.log(fin);
-
+  const router = useRouter();
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(img);
-    console.log(imgName);
-    console.log(imgHelper(imgName));
-    const submittableImg = getfile(img);
-    console.log(submittableImg);
-    const fileName = imgHelper(imgName);
-    const resp = await fetch("/api/signup", {
+    // const fileName = imgHelper(imgName);
+    const req = await fetch("/api/signup", {
       method: "POST",
       body: JSON.stringify({ name, email, password }),
       headers: {
-        "Content-type": "application/octet-stream",
+        "Content-type": "application/Json",
       },
     });
-    const JsonResp = await resp.json();
-    console.log(JsonResp.resp);
-    const pfpData = new FormData();
-    pfpData.append("id", JsonResp.resp.id);
-    pfpData.append("file", img);
-    const pfpMaker = await fetch("/api/pfp", {
-      method: "POST",
-      body: img,
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
+    const { resp } = await req.json();
+    if (req.ok) {
+      router.push(`/home/${resp.id}`);
+    }
+    // const pfpData = new FormData();
+    // pfpData.append("id", JsonResp.resp.id);
+    // pfpData.append("file", img);
+    // const pfpMaker = await fetch("/api/pfp", {
+    //   method: "POST",
+    //   body: img,
+    //   headers: {
+    //     "Content-Type": "multipart/form-data",
+    //   },
+    // });
 
     if (email !== "" && email.includes("@") && password != "") {
       setUp(!up);
@@ -91,6 +88,7 @@ const SignupPage = (props) => {
                 type="file"
                 name=""
                 id="fi"
+                accept="image/*"
                 ref={FI}
                 onChange={(e) => {
                   setImg(e.target.files[0]);
