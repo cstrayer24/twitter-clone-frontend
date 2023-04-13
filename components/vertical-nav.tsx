@@ -13,6 +13,7 @@ import More from "./icons/more";
 import userComponent from "../types/homeComponent";
 import Dots from "./icons/dots";
 import LogoutPanel from "./logoutPanel";
+import Image from "next/image";
 const VerticalNav: FC<userComponent> = (props) => {
   const [logout, showLogout] = useState(false);
   return (
@@ -47,15 +48,22 @@ const VerticalNav: FC<userComponent> = (props) => {
       <button className=" text-white bg-blue-400 px-20 py-5 rounded-full font-bold  mb-[8rem]  text-xl">
         Tweet
       </button>
-      {logout && <LogoutPanel userName={props.user} />}
+      {logout && <LogoutPanel userName={props.userName} />}
       <div
-        className=" text-white flex hover:bg-white/25 rounded-full w-[12em] absolute mt-0 "
+        className=" text-white flex hover:bg-white/25 rounded-full w-[15em] pl-3 absolute mt-0 cursor-pointer "
         onClick={() => showLogout(!logout)}
       >
-        <div className=" mr-14 ml-5">
-          {/*will be pfp*/}
-          <h1 className=" mb-1 font-bold">{props.user}</h1>
-          <span className=" text-white/25">@{props.user}</span>
+        <div className=" mr-14 ml-8">
+          <Image
+            src={props.pfp}
+            alt="pfp"
+            width={20}
+            height={20}
+            className=" relative right-[2.1rem] top-[2rem]"
+          />
+          <h1 className=" mb-1 font-bold">{props.userName}</h1>
+
+          <span className=" text-white/25">@{props.userName}</span>
         </div>
         <Dots className=" self-center" />
       </div>

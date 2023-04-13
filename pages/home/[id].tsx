@@ -34,7 +34,7 @@ export const UserPage = ({ user }: { user: User }) => {
   if (!user) {
     router.push("/signin");
   }
-  return <Home user={user.name}></Home>;
+  return <Home user={user.name} pfp={user.pfp}></Home>;
 };
 
 export default UserPage;

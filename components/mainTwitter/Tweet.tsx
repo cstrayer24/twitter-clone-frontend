@@ -16,9 +16,10 @@ function Tweet(props): JSX.Element {
     return { data, error, isLoading };
   };
   const allTweets = tweets();
-
+  const tweetArr = [].concat(allTweets.data);
+  console.log(tweetArr.length);
   const { data, error, isLoading } = useSwr(
-    `api/postData/${Math.floor(Math.random() * 3)}`,
+    `api/postData/${Math.floor(Math.random() * tweetArr.length)}`,
     fetcher
   );
   useEffect(() => {
@@ -38,9 +39,18 @@ function Tweet(props): JSX.Element {
   return (
     <div className=" border border-solid">
       <span>
-        <h1>{data.Name}</h1>
+        <span className=" rounded-full inline">
+          <Image
+            src={data.pfp ? data.pfp : "/images/defaultPfp.jpeg"}
+            alt="pfp"
+            width={50}
+            height={50}
+            className=" inline rounded-full "
+          />
+        </span>
+        <h1 className=" inline">{data.Name}</h1>
       </span>
-      <p>{data.body}</p>
+      <p className="block ml-10">{data.body}</p>
       <div>
         <span>
           <button onClick={like}>

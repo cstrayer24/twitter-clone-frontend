@@ -1,3 +1,4 @@
 export default interface userComponent {
-  user: string;
+  userName: string;
+  pfp: string;
 }

@@ -6,9 +6,17 @@ interface HomeProps {
   user: string;
 }
 
-const Home = ({ user, children }: { user: string; children?: ReactNode }) => (
+const Home = ({
+  user,
+  children,
+  pfp,
+}: {
+  user: string;
+  children?: ReactNode;
+  pfp: string;
+}) => (
   <div className=" grid grid-cols-4 bg-black h-screen w-screen">
-    <VerticalNav user={user} />
+    <VerticalNav userName={user} pfp={pfp} />
     <div className=" col-span-2">{children}</div>
     <HomeRight />
   </div>

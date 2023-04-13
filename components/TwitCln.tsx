@@ -22,7 +22,6 @@ function TwitCln(): JSX.Element {
     const req = await fetch("/api/checkLoggedin", { method: "POST" });
     const res = await req.json();
     if (req.ok) {
-      console.log("works");
       console.log(res);
       router.push(`/home/${res}`);
     }
@@ -30,7 +29,6 @@ function TwitCln(): JSX.Element {
   useEffect(() => {
     if (isLoggedIn()) {
       setBanner(true);
-      console.log("test");
       checkFetch();
     }
   }, [isLoggedIn()]);

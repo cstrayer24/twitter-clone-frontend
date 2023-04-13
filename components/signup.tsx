@@ -28,20 +28,17 @@ const SignupPage = (props) => {
         "Content-type": "application/Json",
       },
     });
+    const pfpData = new FormData();
+
+    pfpData.append("file", img);
+    const pfp = await fetch("/api/pfp", {
+      method: "POST",
+      body: pfpData,
+    });
     const { resp } = await req.json();
     if (req.ok) {
       router.push(`/home/${resp.id}`);
     }
-    // const pfpData = new FormData();
-    // pfpData.append("id", JsonResp.resp.id);
-    // pfpData.append("file", img);
-    // const pfpMaker = await fetch("/api/pfp", {
-    //   method: "POST",
-    //   body: img,
-    //   headers: {
-    //     "Content-Type": "multipart/form-data",
-    //   },
-    // });
 
     if (email !== "" && email.includes("@") && password != "") {
       setUp(!up);

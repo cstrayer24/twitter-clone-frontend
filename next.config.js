@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["via.placeholder.com"],
+    domains: ["fear-us-elon.s3.us-east-2.amazonaws.com"],
   },
 };
 
