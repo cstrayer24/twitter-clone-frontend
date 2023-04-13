@@ -31,9 +31,7 @@ function Tweet(props): JSX.Element {
       body: JSON.stringify({ id: data.id }),
     });
     const res = await req.json();
-    console.log(res);
   }
-  console.log(data);
   if (error) return <div>failed</div>;
   if (isLoading) return <div>loading...</div>;
   return (

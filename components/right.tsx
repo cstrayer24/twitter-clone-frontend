@@ -10,7 +10,12 @@ import SignupPage from "./signup";
 import { ctx } from "./signup";
 import { Context, createContext, useContext, useEffect, useState } from "react";
 import stateChange from "../lib/stateChange";
+
+import { useSession, signIn, signOut } from "next-auth/react";
+
 function Tright(props): JSX.Element {
+  const session = useSession();
+  console.log(session);
   const [up, setUp] = useState(false);
   let upContext = useContext(ctx);
   return (
@@ -32,7 +37,7 @@ function Tright(props): JSX.Element {
         <button
           className=" bg-slate-50 text-black   rounded-full p-3 relative left-1  mb-1"
           style={{ width: "98%" }}
-          onClick={props.onClick}
+          onClick={() => signIn()}
         >
           sign up with phone or email
         </button>

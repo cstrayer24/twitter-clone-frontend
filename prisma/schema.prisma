@@ -7,54 +7,84 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Account {
+  id                String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId            String  @db.Uuid
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
 model User {
-  id        String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  email     String    @unique
-  password  String
-  name      String?
-  sessions  Session[]
-  Tweets    Tweet[]
+  id            String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  email         String    @unique
+  password      String
+  name          String?
+  emailVerified DateTime?
+
+  pfp       String    @default("")
   follows   Follow[]  @relation("follower")
   followers Follow[]  @relation("following")
+  sessions  Session[]
+  Tweets    Tweet[]
   like      like[]
-  pfp       String @default("")
+  Account   Account[]
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
 }
 
 model Session {
-  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  expiresAt DateTime @db.Timestamptz()
-  user      User     @relation(fields: [userId], references: [id])
-  userId    String   @db.Uuid
+  id           String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  expires      DateTime @db.Timestamptz(6)
+  sessionToken String   @unique
+  userId       String   @db.Uuid
+  user         User     @relation(fields: [userId], references: [id])
 
   @@index([userId])
 }
 
 model Tweet {
-  id     String @id @default(dbgenerated("gen_random_uuid ()")) @db.Uuid
+  id     String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   body   String
   length Int
-  user   User?  @relation(fields: [userId], references: [id])
   userId String @db.Uuid
   Name   String @default("")
   likes  Int?
+  user   User   @relation(fields: [userId], references: [id])
   like   like[]
 
   @@index([userId])
 }
 
 model Follow {
-  id          String @id @default(dbgenerated("gen_random_uuid ()")) @db.Uuid
+  id          String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   followerId  String @db.Uuid
+  followingId String @db.Uuid
   follower    User   @relation("follower", fields: [followerId], references: [id])
   following   User   @relation("following", fields: [followingId], references: [id])
-  followingId String @db.Uuid
 }
 
 model like {
-  id    String @id @default(dbgenerated("gen_random_uuid ()")) @db.Uuid
-  liked Tweet  @relation(fields: [tweetId], references: [id])
-  liker User   @relation(fields: [userId], references: [id])
-
+  id      String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   tweetId String @db.Uuid
   userId  String @db.Uuid
+  liked   Tweet  @relation(fields: [tweetId], references: [id])
+  liker   User   @relation(fields: [userId], references: [id])
 }
