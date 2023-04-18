@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import getfile from "../lib/getfile";
 import documentHelper from "../lib/documentHelper";
 import imgHelper from "../lib/imgHelper";
+import { signIn } from "next-auth/react";
 export let ctx = createContext(false);
 
 const SignupPage = (props) => {
@@ -21,13 +22,13 @@ const SignupPage = (props) => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // const fileName = imgHelper(imgName);
-    const req = await fetch("/api/signup", {
-      method: "POST",
-      body: JSON.stringify({ name, email, password }),
-      headers: {
-        "Content-type": "application/Json",
-      },
-    });
+    // const req = await fetch("/api/signup", {
+    //   method: "POST",
+    //   body: JSON.stringify({ name, email, password }),
+    //   headers: {
+    //     "Content-type": "application/Json",
+    //   },
+    // });
     const pfpData = new FormData();
 
     pfpData.append("file", img);
@@ -35,14 +36,20 @@ const SignupPage = (props) => {
       method: "POST",
       body: pfpData,
     });
-    const { resp } = await req.json();
-    if (req.ok) {
-      router.push(`/home/${resp.id}`);
-    }
+    // const { resp } = await req.json();
+    // if (req.ok) {
+    //   router.push(`/home/${resp.id}`);
+    // }
 
     if (email !== "" && email.includes("@") && password != "") {
       setUp(!up);
     }
+    signIn("credentials", {
+      redirect: true,
+      password: password,
+      username: name,
+      email: email,
+    });
   };
 
   return (

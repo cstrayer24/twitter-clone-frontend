@@ -37,7 +37,7 @@ function Tright(props): JSX.Element {
         <button
           className=" bg-slate-50 text-black   rounded-full p-3 relative left-1  mb-1"
           style={{ width: "98%" }}
-          onClick={() => signIn()}
+          onClick={props.onClick}
         >
           sign up with phone or email
         </button>

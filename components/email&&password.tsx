@@ -7,6 +7,8 @@ import LogoCorner from "./icons/corner-logo";
 import Link from "next/link";
 import OpenEye from "./icons/openEye";
 import ShutEye from "./icons/shutEye";
+import { SignInResponse, signIn, useSession } from "next-auth/react";
+import { Session } from "inspector";
 type eAndPProps = {
   email: string;
 };
@@ -18,6 +20,7 @@ function EmailAndPwd(props: eAndPProps) {
   const [pwdVis, setPwdVis] = useState("password");
   const [pwdVisHelp, setPwdVisHelp] = useState(false);
   const router = useRouter();
+  const session = useSession();
 
   const showPwd = (e) => {
     setPwdVisHelp(!pwdVisHelp);
@@ -30,22 +33,35 @@ function EmailAndPwd(props: eAndPProps) {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const post = await fetch("/api/signin", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    });
-    console.log(post);
-    const data = await post.json();
-    console.log(data);
+    // const post = await fetch("/api/signin", {
+    //   method: "POST",
+    //   headers: {
+    //     "content-type": "application/json",
+    //   },
+    //   body: JSON.stringify({ email, password }),
+    // });
+    // console.log(post);
+    // const data = await post.json();
+    // console.log(data);
 
-    if (post.status === 200) {
-      setUp(!up);
-      router.push(`/home/${data.id}`);
+    // if (post.status === 200) {
+    //   setUp(!up);
+    //   router.push(`/home/${data.id}`);
+    // }
+    const res: SignInResponse = await signIn("credentials", {
+      email: email,
+      password: password,
+      redirect: false,
+    });
+    //try checking if user eqlas null
+
+    if (typeof session.data.user.name === undefined) {
+      return null;
+    } else {
+      router.push(`/home/${session.data.user.name}`);
     }
   };
+
   return (
     <>
       {up && (

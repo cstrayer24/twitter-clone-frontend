@@ -2,7 +2,7 @@ import NextAuth from "next-auth";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import CredentialsProvider from "next-auth/providers/credentials";
 import prisma from "../../../lib/prisma";
-
+import { randomUUID } from "crypto";
 export default NextAuth({
   adapter: PrismaAdapter(prisma),
   providers: [
@@ -13,10 +13,25 @@ export default NextAuth({
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
-        console.log(credentials);
-        const user = { id: "1", name: "J Smith", email: "jsmith@example.com" };
+        const { email, password } = req.body;
+        const userToAuth = await prisma.user.findFirst({
+          where: {
+            email: email,
+          },
+        });
+        console.log(userToAuth);
+        const user = {
+          id: userToAuth.id,
+
+          email: email,
+          password: password,
+        };
+
         return user;
       },
     }),
   ],
+  session: {
+    strategy: "jwt",
+  },
 });
