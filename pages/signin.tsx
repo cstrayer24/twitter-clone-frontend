@@ -15,9 +15,7 @@ function signin() {
       },
       body: JSON.stringify({ email, password }),
     });
-    console.log(post);
     const data = await post.json();
-    console.log(data);
     if (data.ok) {
     }
   };

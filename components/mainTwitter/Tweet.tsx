@@ -17,7 +17,6 @@ function Tweet(props): JSX.Element {
   };
   const allTweets = tweets();
   const tweetArr = [].concat(allTweets.data);
-  console.log(tweetArr.length);
   const { data, error, isLoading } = useSwr(
     `api/postData/${Math.floor(Math.random() * tweetArr.length)}`,
     fetcher

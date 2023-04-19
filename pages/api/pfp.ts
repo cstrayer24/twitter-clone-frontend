@@ -67,7 +67,6 @@ async function pfp(req: NextApiRequest, res: NextApiResponse) {
   try {
     await s3Client.send(command);
   } catch (e) {
-    console.error(e);
     res.status(400).end();
   }
   const sessionOfUser = await prisma.session.findFirst({

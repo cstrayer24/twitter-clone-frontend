@@ -8,8 +8,6 @@ export default async function handler(
   const { content } = req.query;
   const tweets = await prisma.tweet.findMany({});
   const TweetArr = JSON.parse(JSON.stringify(tweets));
-  console.log(tweets);
-  console.log(TweetArr);
   if (req.method !== "GET") {
     return res.status(400).json({ error: "not found" });
   }
@@ -24,5 +22,4 @@ export default async function handler(
   if (content != undefined) {
     res.status(200).json(TweetArr[Number(content) - 1]);
   }
-
 }

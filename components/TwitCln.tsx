@@ -22,7 +22,6 @@ function TwitCln(): JSX.Element {
     const req = await fetch("/api/checkLoggedin", { method: "POST" });
     const res = await req.json();
     if (req.ok) {
-      console.log(res);
       router.push(`/home/${res}`);
     }
   };

@@ -16,8 +16,6 @@ const SignupPage = (props) => {
   let [up, setUp] = useState(true);
   const FI = useRef(null);
   const fin = documentHelper(document.querySelector("#fi"));
-  console.log(FI);
-  console.log(fin);
   const router = useRouter();
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();

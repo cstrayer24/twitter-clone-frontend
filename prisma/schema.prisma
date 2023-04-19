@@ -20,8 +20,7 @@ model Account {
   scope             String?
   id_token          String?
   session_state     String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
 }
@@ -31,15 +30,14 @@ model User {
   email         String    @unique
   password      String
   name          String?
+  pfp           String    @default("")
   emailVerified DateTime?
-
-  pfp       String    @default("")
-  follows   Follow[]  @relation("follower")
-  followers Follow[]  @relation("following")
-  sessions  Session[]
-  Tweets    Tweet[]
-  like      like[]
-  Account   Account[]
+  Account       Account[]
+  follows       Follow[]  @relation("follower")
+  followers     Follow[]  @relation("following")
+  sessions      Session[]
+  Tweets        Tweet[]
+  like          like[]
 }
 
 model VerificationToken {
@@ -52,9 +50,9 @@ model VerificationToken {
 
 model Session {
   id           String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId       String   @db.Uuid
   expires      DateTime @db.Timestamptz(6)
   sessionToken String   @unique
-  userId       String   @db.Uuid
   user         User     @relation(fields: [userId], references: [id])
 
   @@index([userId])

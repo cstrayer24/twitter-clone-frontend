@@ -17,11 +17,11 @@ export default async function handler(
   });
 
   // TODO: Check if session is expired
-  if (session.expiresAt <= new Date()) {
-    return res
-      .status(400)
-      .json({ error: "log back in your session is expired" });
-  }
+  // if (session.expiresAt <= new Date()) {
+  //   return res
+  //     .status(400)
+  //     .json({ error: "log back in your session is expired" });
+  // }
   // Check the length < 260
   // if (tweetBody.length > 260) {
   //   return res.status(404).json({ lengthError: "your tweet is too long" });

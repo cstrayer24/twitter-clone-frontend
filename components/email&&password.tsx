@@ -54,12 +54,7 @@ function EmailAndPwd(props: eAndPProps) {
       redirect: false,
     });
     //try checking if user eqlas null
-
-    if (typeof session.data.user.name === undefined) {
-      return null;
-    } else {
-      router.push(`/home/${session.data.user.name}`);
-    }
+    console.log(res);
   };
 
   return (

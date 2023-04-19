@@ -25,7 +25,6 @@ function Layout(props) {
   useEffect(() => {
     if (isLoggedIn()) {
       setBanner(true);
-      console.log("test");
     }
   }, [isLoggedIn()]);
   {
