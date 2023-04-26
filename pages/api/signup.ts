@@ -20,7 +20,7 @@ export default async function handler(
   const expires: Date = new Date(
     new Date().getTime() + 7 * 24 * 60 * 60 * 1000
   );
-  const session: { id: string; userId: string; expiresAt: Date } =
+  const session: { id: string; userId: string; expiresAt?: Date } =
     await prisma.session.create({
       data: {
         userId: resp.id,
