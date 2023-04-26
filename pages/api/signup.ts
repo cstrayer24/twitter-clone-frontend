@@ -22,7 +22,7 @@ export default async function handler(
     await prisma.session.create({
       data: {
         userId: resp.id,
-        expiresAt: expiresAt,
+        expiresAt,
       },
     });
   res.setHeader("Set-Cookie", [
