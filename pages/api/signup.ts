@@ -17,19 +17,19 @@ export default async function handler(
   const resp = await prisma.user.create({
     data: { name, email, password: hashedPassword },
   });
-  const expiresAt = new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000);
+  const expires = new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000);
   const session: { id: string; userId: string; expiresAt: Date } =
     await prisma.session.create({
       data: {
         userId: resp.id,
-        expiresAt,
+        expiresAt: expires,
       },
     });
   res.setHeader("Set-Cookie", [
     `sessionId=${
       session.id
-    }; Path=/; HttpOnly; Expires=${expiresAt.toUTCString()};`,
-    `isLoggedIn=${1}; tOrf=1; Path=/; Expires=${expiresAt.toUTCString()};`,
+    }; Path=/; HttpOnly; Expires=${expires.toUTCString()};`,
+    `isLoggedIn=${1}; tOrf=1; Path=/; Expires=${expires.toUTCString()};`,
   ]);
 
   res.status(200).json({ resp });
