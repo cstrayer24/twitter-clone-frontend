@@ -47,13 +47,12 @@ function EmailAndPwd(props: eAndPProps) {
     // if (post.status === 200) {
     //   setUp(!up);
     //   router.push(`/home/${data.id}`);
-    // }
+    // // }
     const res: SignInResponse = await signIn("credentials", {
       email: email,
       password: password,
       redirect: false,
     });
-    //try checking if user eqlas null
     console.log(res);
   };
 

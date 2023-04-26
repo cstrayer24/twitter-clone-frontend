@@ -59,7 +59,11 @@ const HomeRight: FC = () => {
         <span>
           <h1 className=" font-bold text-lg">Who to follow</h1>
         </span>
-        <WhoTF username={"test"} handle={"test"} />
+        <WhoTF
+          username={"test"}
+          handle={"test"}
+          onClick={() => console.log("hi")}
+        />
       </div>
       {/* <Links /> */}
     </div>

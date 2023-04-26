@@ -45,7 +45,7 @@ async function pfp(req: NextApiRequest, res: NextApiResponse) {
   const form = new formidable.IncomingForm();
 
   const data: FormData = await new Promise((res, rej) => {
-    form.parse(req, (err, fields, files) => {
+    form.parse(req, (err, fields, files: any) => {
       if (err) rej(err);
       res({ fields, files });
     });

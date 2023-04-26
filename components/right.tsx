@@ -28,7 +28,11 @@ function Tright(props): JSX.Element {
           Sign up now to get your own personalized timeline!
         </p>
         <span>
-          <GoogleBtn />
+          <GoogleBtn
+            onClick={() => {
+              signIn("google");
+            }}
+          />
         </span>
         <span>
           <AppleBtn />

@@ -19,18 +19,19 @@ function TwitCln(): JSX.Element {
   const [bannerUp, setBanner] = useState(false);
   const router = useRouter();
   const checkFetch = async (): Promise<void> => {
-    const req = await fetch("/api/checkLoggedin", { method: "POST" });
-    const res = await req.json();
-    if (req.ok) {
-      router.push(`/home/${res}`);
-    }
+    // const req = await fetch("/api/checkLoggedin", { method: "POST" });
+    // const res = await req.json();
+    // if (req.ok) {
+    //   router.push(`/home/${res}`);
+    // }
   };
-  useEffect(() => {
-    if (isLoggedIn()) {
-      setBanner(true);
-      checkFetch();
-    }
-  }, [isLoggedIn()]);
+  // useEffect(() => {
+  // if (isLoggedIn()) {
+  // setBanner(true);
+  // checkFetch();
+  // }
+  // }, [isLoggedIn()]);
+
   return (
     <div className="grid grid-cols-4  h-screen text-white bg-black w-screen overflow-auto max-sm:grid-cols-1 max-sm:overflow-x-hidden">
       <Tleft />
