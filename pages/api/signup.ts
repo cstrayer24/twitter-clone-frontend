@@ -17,7 +17,9 @@ export default async function handler(
   const resp = await prisma.user.create({
     data: { name, email, password: hashedPassword },
   });
-  const expires = new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000);
+  const expires: Date = new Date(
+    new Date().getTime() + 7 * 24 * 60 * 60 * 1000
+  );
   const session: { id: string; userId: string; expiresAt: Date } =
     await prisma.session.create({
       data: {
