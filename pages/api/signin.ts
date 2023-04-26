@@ -24,7 +24,7 @@ async function signin(req: NextApiRequest, res: NextApiResponse) {
     return res.status(400).json({ error: "wrong password" });
   }
   const expiresAt = new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000);
-  const session = await prisma.session.create({
+  const session: any = await prisma.session.create({
     data: {
       userId: user.id,
       expiresAt,
