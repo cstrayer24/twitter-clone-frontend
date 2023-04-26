@@ -20,13 +20,12 @@ export default async function handler(
   const expires: Date = new Date(
     new Date().getTime() + 7 * 24 * 60 * 60 * 1000
   );
-  const session: { id: string; userId: string; expiresAt?: Date } =
-    await prisma.session.create({
-      data: {
-        userId: resp.id,
-        expiresAt: expires,
-      },
-    });
+  const session = (await prisma.session.create({
+    data: {
+      userId: resp.id,
+      expiresAt: expires,
+    },
+  })) as any;
   res.setHeader("Set-Cookie", [
     `sessionId=${
       session.id
