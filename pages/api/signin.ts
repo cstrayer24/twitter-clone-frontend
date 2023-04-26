@@ -24,18 +24,18 @@ async function signin(req: NextApiRequest, res: NextApiResponse) {
     return res.status(400).json({ error: "wrong password" });
   }
   const expiresAt = new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000);
-  const session: any = await prisma.session.create({
-    data: {
-      userId: user.id,
-      expiresAt,
-    },
-  });
-  res.setHeader("Set-Cookie", [
-    `sessionId=${
-      session.id
-    }; Path=/; HttpOnly; Expires=${expiresAt.toUTCString()};`,
-    `isLoggedIn=${1}; tOrf=1; Path=/; Expires=${expiresAt.toUTCString()};`,
-  ]);
+  // const session: any = await prisma.session.create({
+  //   data: {
+  //     userId: user.id,
+  //     expiresAt,
+  //   },
+  // });
+  // res.setHeader("Set-Cookie", [
+  //   `sessionId=${
+  //     session.id
+  //   }; Path=/; HttpOnly; Expires=${expiresAt.toUTCString()};`,
+  //   `isLoggedIn=${1}; tOrf=1; Path=/; Expires=${expiresAt.toUTCString()};`,
+  // ]);
 
   res.send({ id: user.id, email: user.email, name: user.name });
 }
